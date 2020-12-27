@@ -23,6 +23,7 @@ console.log(isAuth);
   return (
     <Router>
       <div className="app">
+  
         <Navbar />
         <div className="container">
           { !isAuth ? (
