@@ -1,5 +1,27 @@
+.disk {
+ 
+  &__upload-input {
+    display: none;
+  }
+  &__upload-label {
+    border: 2px dashed #888;
+    padding: 6px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #888;
+  }
+}
+.disk__btns {
+  display: flex;
+  align-items: center;
+}
+
 .disk__btns .btn {
     margin-right: 20px;
+}
+.file__item {
+  cursor: pointer;
 }
 
 .filelist {

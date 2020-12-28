@@ -20,7 +20,7 @@ function App() {
     dispatch(auth())
   }, [])
 
-console.log(isAuth);
+
   return (
     <Router>
       <div className="app">

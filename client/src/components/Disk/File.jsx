@@ -8,18 +8,21 @@ export default function File({file}) {
     const dispatch = useDispatch()
     const currentDir = useSelector(state => state.files.currentDir)
 
-    const openDirHandler = () => {
-        dispatch(pushToStack(currentDir))
-        dispatch(setCurrentDir(file._id))
+    function openDirHandler(file) {
+        if(file.type === 'dir') {
+            dispatch(pushToStack(currentDir))
+            dispatch(setCurrentDir(file._id))
+        }
     }
 
+
     return (
-        <tr onClick={file.type === 'dir' ? openDirHandler : ''}>
+        <tr onClick={() => openDirHandler(file)} className="file__item">
             <td>
             <div className="file__img">
                  { file.type === 'dir'
-                    ? <i class="material-icons">folder</i>
-                    : <i class="material-icons">file</i> 
+                    ? <i className="material-icons">folder</i>
+                    : <i className="material-icons">insert_drive_file</i> 
                 }
                 </div> 
             </td>

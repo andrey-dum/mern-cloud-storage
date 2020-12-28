@@ -8,8 +8,8 @@ export default function FileList() {
 
     return (
         <div className='filelist'>
-            {/* <ul class="collection with-header filelist">
-                <li class="collection-header filelist__header">
+            {/* <ul className="collection with-header filelist">
+                <li className="collection-header filelist__header">
                     <h4 className="filelist__name">Название</h4>
                     <h4 className="filelist__date">Дата</h4>
                     <h4 className="filelist__size">Размер</h4>
