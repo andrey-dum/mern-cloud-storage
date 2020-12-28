@@ -10,6 +10,7 @@ export const registration = async (email, password) => {
         })
         alert(response.data.message)
     } catch (error) {
+        // alert(error.response.data.message)
         alert(error.response.data.message)
     }
 }
@@ -24,6 +25,7 @@ export const login = (email, password) => {
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (error) {
+            // alert(error.response.data.message)
             alert(error.response.data.message)
         }   
     }
@@ -40,8 +42,7 @@ export const auth =  () => {
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
         } catch (e) {
-            console.log(e.response.data.message)
-            // alert(e.response.data.message)
+            alert(e.response.data.message)
             localStorage.removeItem('token')
         }
     }

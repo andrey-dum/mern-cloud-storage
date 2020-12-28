@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 
 import './App.css';
 import 'materialize-css/dist/css/materialize.min.css'
@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar';
 import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import { auth } from './actions/users';
+import Disk from './components/Disk/Disk';
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
@@ -30,9 +31,13 @@ console.log(isAuth);
             <Switch>
               <Route path={'/registration'} component={Registration} />
               <Route path={'/login'} component={Login} />
+              <Redirect to="/login" />
           </Switch>
           ) : (
-            <h1>HELLO</h1>
+            <Switch>
+              <Route path={'/'} component={Disk} />
+              <Redirect to="/" />
+            </Switch>
           ) }
             
         </div>

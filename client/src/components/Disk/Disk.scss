@@ -1,0 +1,53 @@
+.disk__btns .btn {
+    margin-right: 20px;
+}
+
+.filelist {
+    margin: 20px 0;
+    &__header {
+      display: grid;
+      grid-template-columns: 1fr 4fr repeat(4, 1fr);
+      h4 {
+          font-size: 24px;
+          margin: 10px 0;
+      }
+    }
+  
+    &__name {
+      grid-column-start: 2;
+    }
+    &__date {
+      grid-column-start: 5;
+      justify-self: center;
+    }
+    &__size {
+      grid-column-start: 6;
+      justify-self: center;
+    }
+}
+
+.file {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(4, 1fr);
+    align-items: center;
+    transition: all .3s ease;
+    // i {
+    //     color: gray;
+    // }
+    &:hover {
+        background: #f2f2f2;
+    }
+    &__img {
+      justify-self: center;
+    }
+  
+    &__date {
+      grid-column-start: 5;
+      justify-self: center;
+    }
+    &__size {
+      grid-column-start: 6;
+      justify-self: center;
+    }
+  }
