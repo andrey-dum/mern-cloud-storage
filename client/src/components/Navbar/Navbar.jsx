@@ -23,7 +23,7 @@ export default function Navbar() {
                             <li><NavLink to={'/registration'}>Регистрация</NavLink></li>
                         </>
                     ) : (
-                        <li onClick={logoutHandler}>Выход</li>
+                        <li className="logout" onClick={logoutHandler}>Выход</li>
                     ) }
                     
                 </ul>
