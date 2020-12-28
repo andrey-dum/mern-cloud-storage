@@ -115,3 +115,15 @@
       align-self: flex-end;
     }
   }
+
+
+  .drop-area {
+    width: 100%;
+    height: calc(90vh - 50px - 40px);
+    margin: 20px;
+    border: dashed #ccc 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+  }
