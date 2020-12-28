@@ -18,21 +18,20 @@ export default function FileList() {
                 {files}
             </ul> */}
 
-        <table>
-            <thead>
-            <tr>
-                <th>Type</th>
-                <th>Название</th>
-                <th>Дата</th>
-                <th>Размер</th>
-            </tr>
-        </thead>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Название</th>
+                        <th>Дата</th>
+                        <th>Размер</th>
+                    </tr>
+                </thead>
 
-        <tbody>
-        {files}
-          
-        </tbody>
-      </table>
+                <tbody>
+                    {files}
+                </tbody>
+            </table>
             
         </div>
     )
