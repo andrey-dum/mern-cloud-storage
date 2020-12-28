@@ -34,7 +34,7 @@ export default function Popup() {
                     <div
                         onClick={() => dispatch(setPopupDisplay('none'))}
                         className="popup__close"
-                        ><i class="material-icons">close</i></div>
+                        ><i className="material-icons">close</i></div>
                 </div>
                 <Input
                         id="popupCreateDir"
