@@ -1,5 +1,8 @@
 import axios from 'axios'
 import { addFile, deleteFileAction, setFiles } from '../reducers/fileReducer'
+import {addUploadFile, changeUploadFile, showUploader} from "../reducers/uploadReducer";
+import {API_URL} from "../config";
+
 
 
 export function getFiles(dirId) {
@@ -38,29 +41,28 @@ export function uploadFile(file, dirId) {
         try {
             const formData = new FormData()
             formData.append('file', file)
-            
             if (dirId) {
                 formData.append('parent', dirId)
             }
-
-            const response = await axios.post(`http://localhost:5000/api/files/upload`, formData, {
+            const uploadFile = {name: file.name, progress: 0, id: Date.now()}
+            dispatch(showUploader())
+            dispatch(addUploadFile(uploadFile))
+            const response = await axios.post(`${API_URL}api/files/upload`, formData, {
                 headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
                 onUploadProgress: progressEvent => {
                     const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
-                    console.log('total', totalLength)
                     if (totalLength) {
-                        let progress = Math.round((progressEvent.loaded * 100) / totalLength)
-                        console.log(progress)
+                        uploadFile.progress = Math.round((progressEvent.loaded * 100) / totalLength)
+                        dispatch(changeUploadFile(uploadFile))
                     }
                 }
             });
             dispatch(addFile(response.data))
         } catch (e) {
-            alert(e.response.data.message)
+            alert(e?.response?.data?.message)
         }
     }
 }
-
 
 export async function downloadFile(file) {
     const response = await fetch(`http://localhost:5000/api/files/download?id=${file._id}`,{

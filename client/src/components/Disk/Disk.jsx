@@ -6,6 +6,7 @@ import FileList from './FileList'
 import './Disk.scss'
 import Popup from './Popup'
 import { setCurrentDir, setPopupDisplay } from '../../reducers/fileReducer'
+import Uploader from './Uploader/Uploader'
 
 export default function Disk() {
     const dispatch = useDispatch()
@@ -72,6 +73,7 @@ export default function Disk() {
                     <input multiple={true} onChange={fileUploadHandler} type="file" id="disk__upload-input" className="disk__upload-input"/>
                 </div>
             </div>
+            <Uploader />
             <FileList />
         </div>
         : <div className="drop-area" onDrop={dropHandler} onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
