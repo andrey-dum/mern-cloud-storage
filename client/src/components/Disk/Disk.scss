@@ -18,6 +18,11 @@
 .disk__btns {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  .left-items {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .disk__btns .btn {

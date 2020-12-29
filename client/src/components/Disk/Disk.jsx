@@ -7,11 +7,13 @@ import './Disk.scss'
 import Popup from './Popup'
 import { setCurrentDir, setPopupDisplay } from '../../reducers/fileReducer'
 import Uploader from './Uploader/Uploader'
+import Loader from '../UI/Loader/Loader'
 
 export default function Disk() {
     const dispatch = useDispatch()
     const currentDir = useSelector(state => state.files.currentDir)
     const dirStack = useSelector(state => state.files.dirStack)
+    const loader = useSelector(state => state.app.loader)
     const [dragEnter, setDragEnter] = useState(false)
     const [sort, setSort] = useState('type')
 
@@ -53,28 +55,34 @@ export default function Disk() {
         setDragEnter(false)
     }
 
+    if (loader) {
+        return <Loader />
+    }
+
     return ( !dragEnter ? 
         <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
             <Popup />
             <div className="disk__btns">
-                <button 
-                    onClick={backClickHandler}
-                    className="btn disk__back"
-                    >Назад</button>
-                <button
-                    onClick={openPopup}
-                    className="btn disk__create"
-                    >Создать папку
-                </button>
-                <div className="disk__upload">
-                    <label htmlFor="disk__upload-input" className="disk__upload-label">
-                        Загрузить файл
-                        {/* <i className="material-icons">file_upload</i>  */}
-                    </label>
-                    <input multiple={true} onChange={fileUploadHandler} type="file" id="disk__upload-input" className="disk__upload-input"/>
+                <div className="left-items">
+                    <button 
+                        onClick={backClickHandler}
+                        className="btn disk__back"
+                        >Назад</button>
+                    <button
+                        onClick={openPopup}
+                        className="btn disk__create"
+                        >Создать папку
+                    </button>
+                    <div className="disk__upload">
+                        <label htmlFor="disk__upload-input" className="disk__upload-label">
+                            Загрузить файл
+                            {/* <i className="material-icons">file_upload</i>  */}
+                        </label>
+                        <input multiple={true} onChange={fileUploadHandler} type="file" id="disk__upload-input" className="disk__upload-input"/>
+                    </div>
                 </div>
 
-                    <div>
+                <div className="right-items">
                         <select
                             value={sort}
                             onChange={(e) => setSort(e.target.value)}
@@ -85,6 +93,7 @@ export default function Disk() {
                             <option value="date">По дате</option>
                         </select>
                     </div>
+                    
             </div>
             <Uploader />
             <FileList />
