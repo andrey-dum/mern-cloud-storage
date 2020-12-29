@@ -5,7 +5,7 @@ import FileList from './FileList'
 
 import './Disk.scss'
 import Popup from './Popup'
-import { setCurrentDir, setPopupDisplay } from '../../reducers/fileReducer'
+import { setCurrentDir, setFileView, setPopupDisplay } from '../../reducers/fileReducer'
 import Uploader from './Uploader/Uploader'
 import Loader from '../UI/Loader/Loader'
 
@@ -58,6 +58,7 @@ export default function Disk() {
     if (loader) {
         return <Loader />
     }
+    
 
     return ( !dragEnter ? 
         <div className="disk" onDragEnter={dragEnterHandler} onDragLeave={dragLeaveHandler} onDragOver={dragEnterHandler}>
@@ -92,6 +93,15 @@ export default function Disk() {
                             <option value="type">По типу</option>
                             <option value="date">По дате</option>
                         </select>
+                        <div className="set__view">
+                            <div className="disk__plate" onClick={() => dispatch(setFileView('plate'))}>
+                                <i className="material-icons">apps</i>
+                            </div>
+                            <div className="disk__list" onClick={() => dispatch(setFileView('list'))}>
+                                
+                                <i className="material-icons">list</i>
+                            </div>
+                        </div>
                     </div>
                     
             </div>
