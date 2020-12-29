@@ -1,6 +1,21 @@
 .navbar {
     padding: 0 20px;
     margin-bottom: 40px;
+    
+}
+.navbar__profileLink {
+ display: block;
+ &:hover {
+     background: none;
+ }
+}
+
+img.navbar__avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-top: 10px;
 }
 
 .navbar__search-li {

@@ -11,6 +11,7 @@ import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import { auth } from './actions/users';
 import Disk from './components/Disk/Disk';
+import Profile from './components/Profile/Profile';
 
 function App() {
   const isAuth = useSelector(state => state.user.isAuth)
@@ -35,6 +36,7 @@ function App() {
           </Switch>
           ) : (
             <Switch>
+              <Route path={'/profile'} component={Profile} />
               <Route path={'/'} component={Disk} />
               <Redirect to="/" />
             </Switch>
