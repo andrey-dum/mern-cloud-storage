@@ -5,7 +5,6 @@ const User = require('../models/User')
 const File = require('../models/File')
 
 
-
 class FileController {
     async createDir(req, res) {
         try {
@@ -39,7 +38,6 @@ class FileController {
         }
     }
 
-
     async uploadFile(req, res) {
         try {
             const file = req.files.file
@@ -66,14 +64,18 @@ class FileController {
             file.mv(path)
 
             const type = file.name.split('.').pop()
+            let filePath = file.name
+            if (parent) {
+                filePath = parent.path + "\\" + file.name
+            }
             const dbFile = new File({
                 name: file.name,
                 type,
                 size: file.size,
-                path: parent?.path,
+                path: filePath,
                 parent: parent?._id,
                 user: user._id
-            })
+            });
 
             await dbFile.save()
             await user.save()
@@ -99,7 +101,20 @@ class FileController {
         }
     }
 
+    async deleteFile(req, res) {
+        try {
+            const file = await File.findOne({_id: req.query.id, user: req.user.id})
+            if (!file) {
+                return res.status(400).json({message: 'file not found'})
+            }
+            fileService.deleteFile(file)
+            await file.remove()
+            return res.json({message: 'File was deleted'})
+        } catch (e) {
+            console.log(e)
+            return res.status(400).json({message: 'Dir is not empty'})
+        }
+    }
 }
-
 
 module.exports = new FileController()

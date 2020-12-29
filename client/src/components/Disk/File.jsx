@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { pushToStack, setCurrentDir } from '../../reducers/fileReducer'
-import { downloadFile } from '../../actions/file'
+import { deleteFile, downloadFile } from '../../actions/file'
 
 
 export default function File({file}) {
@@ -18,6 +18,10 @@ export default function File({file}) {
     function downloadClickHandler(e) {
         e.stopPropagation()
         downloadFile(file)
+    }
+    function deleteClickHandler(e) {
+        e.stopPropagation()
+        dispatch(deleteFile(file))
     }
 
 
@@ -43,8 +47,8 @@ export default function File({file}) {
                         className="file__btn file__download">
                             <i className="material-icons">file_download</i>
                     </div>}
-                    <div className="file__btn file__delete">
-                        <i className="material-icons">close</i>
+                    <div className="file__btn file__delete" onClick={deleteClickHandler}>
+                        <i className="material-icons">delete</i>
                     </div>
                 </div>
             </td>
